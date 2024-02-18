@@ -10,15 +10,14 @@ import MapKit
 
 final class MapViewController: UIViewController {
 
-    //MARK: Outlets
+    // MARK: Outlets
 
     @IBOutlet private var mapView: MKMapView!
 
-    //MARK: Lifecycle methods
+    // MARK: Lifecycle methods
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
 
     }
 
