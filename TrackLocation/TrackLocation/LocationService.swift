@@ -5,7 +5,16 @@
 //  Created by Hayk Hayrapetyan on 18.02.24.
 //
 
+enum AuthorizationStatus {
+    case authorized
+    case appLocationDenied
+    case locationServicesDenied
+    case notDetermined
+    case restricted
+}
+
 protocol LocationService {
-    func requestAuthorization()
-    func requestLocation()
+    var authorizationStatus: AuthorizationStatus { get }
+
+    func startUpdatingLocation()
 }

@@ -9,37 +9,33 @@ import CoreLocation
 
 final class DefaultLocationService: NSObject, LocationService {
 
-    //MARK: Private properties
+    // MARK: Public properties
+
+    @Published private(set) var authorizationStatus: AuthorizationStatus = .notDetermined
+    @Published private(set) var locationError: Error?
+
+    // MARK: Private properties
 
     private let locationManager: CLLocationManager
-    private let shouldMonitorSignificantLocationChanges: Bool
 
-    //MARK: Initializers
+    // MARK: Initializers
 
-    init(locationManager: CLLocationManager, trackLocationAfterAppTermination: Bool = false) {
+    init(locationManager: CLLocationManager) {
         self.locationManager = locationManager
-        self.shouldMonitorSignificantLocationChanges = trackLocationAfterAppTermination
     }
 
-    //MARK: Public methods
+    // MARK: Public methods
 
-    func requestAuthorization() {
-        if shouldMonitorSignificantLocationChanges {
+    func startUpdatingLocation() {
+        if locationManager.authorizationStatus == .notDetermined {
             locationManager.requestAlwaysAuthorization()
-        } else {
-            locationManager.requestWhenInUseAuthorization()
-        }
-    }
-
-    func requestLocation() {
-        if shouldMonitorSignificantLocationChanges {
-            locationManager.startMonitoringSignificantLocationChanges()
         }
 
+        locationManager.startMonitoringSignificantLocationChanges()
         locationManager.startUpdatingLocation()
     }
 
-    //MARK: Private methods
+    // MARK: Private methods
 
     private func setupLocationManager() {
         locationManager.pausesLocationUpdatesAutomatically = false
@@ -47,8 +43,39 @@ final class DefaultLocationService: NSObject, LocationService {
         locationManager.showsBackgroundLocationIndicator = true
         locationManager.delegate = self
     }
+
+    private func getAuthorizationStatus() {
+        switch locationManager.authorizationStatus {
+        case .authorizedWhenInUse, .authorizedAlways:
+            authorizationStatus = .authorized
+        case .denied:
+            let isLocationServicesEnabled = CLLocationManager.locationServicesEnabled()
+
+            authorizationStatus = isLocationServicesEnabled ? .appLocationDenied : .locationServicesDenied
+        case .notDetermined:
+            authorizationStatus = .notDetermined
+        case .restricted:
+            authorizationStatus = .restricted
+        default:
+            break
+        }
+    }
 }
 
-extension DefaultLocationService: CLLocationManagerDelegate {
+// MARK: CLLocationManagerDelegate
 
+extension DefaultLocationService: CLLocationManagerDelegate {
+    func locationManager(_: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+
+    }
+
+    func locationManagerDidChangeAuthorization(_: CLLocationManager) {
+        getAuthorizationStatus()
+    }
+
+    func locationManager(_: CLLocationManager, didFailWithError error: Error) {
+        if let clError = error as? CLError, clError.code != .denied {
+            locationError = clError
+        }
+    }
 }
