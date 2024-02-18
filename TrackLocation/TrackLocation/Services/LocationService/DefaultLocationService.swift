@@ -10,9 +10,9 @@ import CoreLocation
 final class DefaultLocationService: NSObject, LocationService {
 
     // MARK: Public properties
-
-    @Published private(set) var authorizationStatus: AuthorizationStatus = .notDetermined
-    @Published private(set) var locationError: Error?
+    // Keeping as a subject since property wrappers(@Published) aren't allowed in protocols.
+    private(set) var authorizationStatus = LocationService.StatusSubject()
+    private(set) var locationError = LocationService.LocationErrorSubject()
 
     // MARK: Private properties
 
@@ -47,15 +47,15 @@ final class DefaultLocationService: NSObject, LocationService {
     private func getAuthorizationStatus() {
         switch locationManager.authorizationStatus {
         case .authorizedWhenInUse, .authorizedAlways:
-            authorizationStatus = .authorized
+            authorizationStatus.send(.authorized)
         case .denied:
             let isLocationServicesEnabled = CLLocationManager.locationServicesEnabled()
 
-            authorizationStatus = isLocationServicesEnabled ? .appLocationDenied : .locationServicesDenied
+            authorizationStatus.send(isLocationServicesEnabled ? .appLocationDenied : .locationServicesDenied)
         case .notDetermined:
-            authorizationStatus = .notDetermined
+            authorizationStatus.send(.notDetermined)
         case .restricted:
-            authorizationStatus = .restricted
+            authorizationStatus.send(.restricted)
         default:
             break
         }
@@ -75,7 +75,7 @@ extension DefaultLocationService: CLLocationManagerDelegate {
 
     func locationManager(_: CLLocationManager, didFailWithError error: Error) {
         if let clError = error as? CLError, clError.code != .denied {
-            locationError = clError
+            locationError.send(clError)
         }
     }
 }

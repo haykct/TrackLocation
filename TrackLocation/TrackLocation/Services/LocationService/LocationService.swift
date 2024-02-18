@@ -5,6 +5,8 @@
 //  Created by Hayk Hayrapetyan on 18.02.24.
 //
 
+import Combine
+
 enum AuthorizationStatus {
     case authorized
     case appLocationDenied
@@ -13,8 +15,16 @@ enum AuthorizationStatus {
     case restricted
 }
 
+enum LocationError: Error {
+    case error
+}
+
 protocol LocationService {
-    var authorizationStatus: AuthorizationStatus { get }
+    typealias LocationErrorSubject = PassthroughSubject<Error, Never>
+    typealias StatusSubject = PassthroughSubject<AuthorizationStatus, Never>
+
+    var authorizationStatus: StatusSubject { get }
+    var locationError: LocationErrorSubject { get }
 
     func startUpdatingLocation()
 }

@@ -15,6 +15,10 @@
 		26CB24EF2B8132AB0018307B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26CB24ED2B8132AB0018307B /* LaunchScreen.storyboard */; };
 		26CB24F82B8146DD0018307B /* DefaultLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CB24F72B8146DD0018307B /* DefaultLocationService.swift */; };
 		26CB24FA2B817A830018307B /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CB24F92B817A830018307B /* LocationService.swift */; };
+		26CB25072B828D7A0018307B /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CB25062B828D7A0018307B /* MapViewModel.swift */; };
+		26D991832B829D8900161745 /* Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D991822B829D8900161745 /* Injection.swift */; };
+		26D991852B829D9400161745 /* Injected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D991842B829D9400161745 /* Injected.swift */; };
+		26D991882B829DD900161745 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 26D991872B829DD900161745 /* Swinject */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +32,9 @@
 		26CB24F02B8132AB0018307B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		26CB24F72B8146DD0018307B /* DefaultLocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLocationService.swift; sourceTree = "<group>"; };
 		26CB24F92B817A830018307B /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		26CB25062B828D7A0018307B /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		26D991822B829D8900161745 /* Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injection.swift; sourceTree = "<group>"; };
+		26D991842B829D9400161745 /* Injected.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injected.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26D991882B829DD900161745 /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,6 +72,7 @@
 				26CB24FE2B827DC90018307B /* Storyboards */,
 				26CB24FF2B827DD50018307B /* Map */,
 				26CB25012B827E010018307B /* Services */,
+				26D991802B829D6A00161745 /* Utilities */,
 				26CB24FB2B827D4A0018307B /* SupportingFiles */,
 			);
 			path = TrackLocation;
@@ -141,8 +150,26 @@
 		26CB25052B827EB60018307B /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				26CB25062B828D7A0018307B /* MapViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		26D991802B829D6A00161745 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				26D991812B829D7900161745 /* DI */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		26D991812B829D7900161745 /* DI */ = {
+			isa = PBXGroup;
+			children = (
+				26D991822B829D8900161745 /* Injection.swift */,
+				26D991842B829D9400161745 /* Injected.swift */,
+			);
+			path = DI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -162,6 +189,9 @@
 			dependencies = (
 			);
 			name = TrackLocation;
+			packageProductDependencies = (
+				26D991872B829DD900161745 /* Swinject */,
+			);
 			productName = TrackLocation;
 			productReference = 26CB24DF2B8132AA0018307B /* TrackLocation.app */;
 			productType = "com.apple.product-type.application";
@@ -190,6 +220,9 @@
 				Base,
 			);
 			mainGroup = 26CB24D62B8132A90018307B;
+			packageReferences = (
+				26D991862B829DD900161745 /* XCRemoteSwiftPackageReference "Swinject" */,
+			);
 			productRefGroup = 26CB24E02B8132AA0018307B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -238,11 +271,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26D991832B829D8900161745 /* Injection.swift in Sources */,
 				26CB24E72B8132AA0018307B /* MapViewController.swift in Sources */,
 				26CB24E32B8132AA0018307B /* AppDelegate.swift in Sources */,
 				26CB24FA2B817A830018307B /* LocationService.swift in Sources */,
 				26CB24F82B8146DD0018307B /* DefaultLocationService.swift in Sources */,
 				26CB24E52B8132AA0018307B /* SceneDelegate.swift in Sources */,
+				26CB25072B828D7A0018307B /* MapViewModel.swift in Sources */,
+				26D991852B829D9400161745 /* Injected.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,6 +509,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		26D991862B829DD900161745 /* XCRemoteSwiftPackageReference "Swinject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swinject/Swinject";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		26D991872B829DD900161745 /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 26D991862B829DD900161745 /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = Swinject;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 26CB24D72B8132A90018307B /* Project object */;
 }
