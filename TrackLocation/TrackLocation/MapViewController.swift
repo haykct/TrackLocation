@@ -6,14 +6,20 @@
 //
 
 import UIKit
+import MapKit
 
-class ViewController: UIViewController {
+final class MapViewController: UIViewController {
+
+    //MARK: Outlets
+
+    @IBOutlet private var mapView: MKMapView!
+
+    //MARK: Lifecycle methods
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
+
     }
 
-
 }
-

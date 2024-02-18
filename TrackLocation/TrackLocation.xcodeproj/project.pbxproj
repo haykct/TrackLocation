@@ -9,21 +9,25 @@
 /* Begin PBXBuildFile section */
 		26CB24E32B8132AA0018307B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CB24E22B8132AA0018307B /* AppDelegate.swift */; };
 		26CB24E52B8132AA0018307B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CB24E42B8132AA0018307B /* SceneDelegate.swift */; };
-		26CB24E72B8132AA0018307B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CB24E62B8132AA0018307B /* ViewController.swift */; };
+		26CB24E72B8132AA0018307B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CB24E62B8132AA0018307B /* MapViewController.swift */; };
 		26CB24EA2B8132AA0018307B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26CB24E82B8132AA0018307B /* Main.storyboard */; };
 		26CB24EC2B8132AB0018307B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26CB24EB2B8132AB0018307B /* Assets.xcassets */; };
 		26CB24EF2B8132AB0018307B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26CB24ED2B8132AB0018307B /* LaunchScreen.storyboard */; };
+		26CB24F82B8146DD0018307B /* DefaultLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CB24F72B8146DD0018307B /* DefaultLocationService.swift */; };
+		26CB24FA2B817A830018307B /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CB24F92B817A830018307B /* LocationService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		26CB24DF2B8132AA0018307B /* TrackLocation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrackLocation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26CB24E22B8132AA0018307B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		26CB24E42B8132AA0018307B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		26CB24E62B8132AA0018307B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		26CB24E62B8132AA0018307B /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		26CB24E92B8132AA0018307B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		26CB24EB2B8132AB0018307B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		26CB24EE2B8132AB0018307B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		26CB24F02B8132AB0018307B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		26CB24F72B8146DD0018307B /* DefaultLocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLocationService.swift; sourceTree = "<group>"; };
+		26CB24F92B817A830018307B /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +62,9 @@
 			children = (
 				26CB24E22B8132AA0018307B /* AppDelegate.swift */,
 				26CB24E42B8132AA0018307B /* SceneDelegate.swift */,
-				26CB24E62B8132AA0018307B /* ViewController.swift */,
+				26CB24E62B8132AA0018307B /* MapViewController.swift */,
+				26CB24F72B8146DD0018307B /* DefaultLocationService.swift */,
+				26CB24F92B817A830018307B /* LocationService.swift */,
 				26CB24E82B8132AA0018307B /* Main.storyboard */,
 				26CB24EB2B8132AB0018307B /* Assets.xcassets */,
 				26CB24ED2B8132AB0018307B /* LaunchScreen.storyboard */,
@@ -77,6 +83,7 @@
 				26CB24DB2B8132AA0018307B /* Sources */,
 				26CB24DC2B8132AA0018307B /* Frameworks */,
 				26CB24DD2B8132AA0018307B /* Resources */,
+				26CB24F62B8134960018307B /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -133,13 +140,36 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		26CB24F62B8134960018307B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		26CB24DB2B8132AA0018307B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				26CB24E72B8132AA0018307B /* ViewController.swift in Sources */,
+				26CB24E72B8132AA0018307B /* MapViewController.swift in Sources */,
 				26CB24E32B8132AA0018307B /* AppDelegate.swift in Sources */,
+				26CB24FA2B817A830018307B /* LocationService.swift in Sources */,
+				26CB24F82B8146DD0018307B /* DefaultLocationService.swift in Sources */,
 				26CB24E52B8132AA0018307B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -292,6 +322,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TrackLocation/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -320,6 +351,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TrackLocation/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
