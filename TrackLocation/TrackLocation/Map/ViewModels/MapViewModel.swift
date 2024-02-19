@@ -10,7 +10,7 @@ import Combine
 final class MapViewModel {
     // MARK: Public properties
 
-    @Published private(set) var authorizationStatus: AuthorizationStatus = .notDetermined
+    @Published private(set) var authorizationStatus: AuthorizationStatus?
     @Published private(set) var serviceError: LocationError?
 
     // MARK: Private properties
@@ -21,7 +21,7 @@ final class MapViewModel {
     // MARK: Initializers
 
     init() {
-        setupLocationSubjects()
+        subscribeToLocationServiceChanges()
     }
 
     // MARK: Public methods
@@ -30,9 +30,13 @@ final class MapViewModel {
         locationService.startUpdatingLocation()
     }
 
+    func stopUpdatingLocation() {
+        locationService.stopUpdatingLocation()
+    }
+
     // MARK: Private methods
 
-    private func setupLocationSubjects() {
+    private func subscribeToLocationServiceChanges() {
         locationService.authorizationStatus
             .sink(receiveValue: { [weak self] status in
                 self?.authorizationStatus = status

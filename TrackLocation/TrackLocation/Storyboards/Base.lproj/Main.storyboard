@@ -22,14 +22,34 @@
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <standardMapConfiguration key="preferredConfiguration"/>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iHY-dQ-q8f">
+                                <rect key="frame" x="63" y="734" width="61.333333333333343" height="37"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Start"/>
+                                <connections>
+                                    <action selector="startTrackingAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="T9Y-mS-E7f"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SgX-sr-VKq">
+                                <rect key="frame" x="266.33333333333331" y="734" width="59.666666666666686" height="37"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Stop"/>
+                                <connections>
+                                    <action selector="stopTrackingAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7ik-KM-I30"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="vEi-8b-sZh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="5eZ-M6-lxF"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="SgX-sr-VKq" secondAttribute="trailing" constant="67" id="7Eh-aX-GwI"/>
                             <constraint firstAttribute="trailing" secondItem="vEi-8b-sZh" secondAttribute="trailing" id="B6h-6E-Knm"/>
                             <constraint firstItem="vEi-8b-sZh" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="ID5-Vq-lGb"/>
+                            <constraint firstItem="iHY-dQ-q8f" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="63" id="LkG-36-WaQ"/>
                             <constraint firstAttribute="bottom" secondItem="vEi-8b-sZh" secondAttribute="bottom" id="Sjw-em-6mW"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="SgX-sr-VKq" secondAttribute="bottom" constant="47" id="tiH-qn-3TD"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="iHY-dQ-q8f" secondAttribute="bottom" constant="47" id="ylD-3G-kMd"/>
                         </constraints>
                     </view>
                     <connections>

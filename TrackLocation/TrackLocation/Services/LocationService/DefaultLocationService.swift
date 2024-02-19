@@ -22,6 +22,9 @@ final class DefaultLocationService: NSObject, LocationService {
 
     init(locationManager: CLLocationManager) {
         self.locationManager = locationManager
+
+        super.init()
+        setupLocationManager()
     }
 
     // MARK: Public methods
@@ -33,6 +36,11 @@ final class DefaultLocationService: NSObject, LocationService {
 
         locationManager.startMonitoringSignificantLocationChanges()
         locationManager.startUpdatingLocation()
+    }
+
+    func stopUpdatingLocation() {
+        locationManager.stopMonitoringSignificantLocationChanges()
+        locationManager.stopUpdatingLocation()
     }
 
     // MARK: Private methods
