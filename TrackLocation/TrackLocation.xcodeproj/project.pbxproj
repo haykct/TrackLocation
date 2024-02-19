@@ -19,6 +19,7 @@
 		26D991832B829D8900161745 /* Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D991822B829D8900161745 /* Injection.swift */; };
 		26D991852B829D9400161745 /* Injected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D991842B829D9400161745 /* Injected.swift */; };
 		26D991882B829DD900161745 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 26D991872B829DD900161745 /* Swinject */; };
+		26D9918B2B82D4C300161745 /* Persisted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D9918A2B82D4C300161745 /* Persisted.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		26CB25062B828D7A0018307B /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		26D991822B829D8900161745 /* Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injection.swift; sourceTree = "<group>"; };
 		26D991842B829D9400161745 /* Injected.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injected.swift; sourceTree = "<group>"; };
+		26D9918A2B82D4C300161745 /* Persisted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persisted.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				26D991812B829D7900161745 /* DI */,
+				26D991892B82D49400161745 /* Persistence */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -170,6 +173,14 @@
 				26D991842B829D9400161745 /* Injected.swift */,
 			);
 			path = DI;
+			sourceTree = "<group>";
+		};
+		26D991892B82D49400161745 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				26D9918A2B82D4C300161745 /* Persisted.swift */,
+			);
+			path = Persistence;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,6 +284,7 @@
 			files = (
 				26D991832B829D8900161745 /* Injection.swift in Sources */,
 				26CB24E72B8132AA0018307B /* MapViewController.swift in Sources */,
+				26D9918B2B82D4C300161745 /* Persisted.swift in Sources */,
 				26CB24E32B8132AA0018307B /* AppDelegate.swift in Sources */,
 				26CB24FA2B817A830018307B /* LocationService.swift in Sources */,
 				26CB24F82B8146DD0018307B /* DefaultLocationService.swift in Sources */,

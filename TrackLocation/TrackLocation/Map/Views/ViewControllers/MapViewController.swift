@@ -9,26 +9,6 @@ import UIKit
 import MapKit
 import Combine
 
-@propertyWrapper struct Persist<T> {
-    let key: String
-    let defaultValue: T
-
-    init(_ key: String, defaultValue: T) {
-        self.key = key
-        self.defaultValue = defaultValue
-    }
-
-    var wrappedValue: T {
-        get {
-            UserDefaults.standard.object(forKey: key) as? T ?? defaultValue
-        }
-
-        set {
-            UserDefaults.standard.set(newValue, forKey: key)
-        }
-    }
-}
-
 final class MapViewController: UIViewController {
 
     // MARK: Outlets
@@ -37,7 +17,7 @@ final class MapViewController: UIViewController {
 
     // MARK: Private properties
 
-    @Persist("isTracking", defaultValue: false) private var isTracking: Bool
+    @Persisted("isTracking", defaultValue: false) private var isTracking: Bool
     private let viewModel = MapViewModel()
     private var cancellable: AnyCancellable?
 
