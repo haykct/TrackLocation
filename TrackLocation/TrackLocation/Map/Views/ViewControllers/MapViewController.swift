@@ -26,6 +26,7 @@ final class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupMapView()
         subscribeToAuthorizationStatusChanges()
     }
 
@@ -41,10 +42,23 @@ final class MapViewController: UIViewController {
                     if isTracking {
                         startTracking()
                     }
+                case .notDetermined:
+                    if isTracking {
+                        // This is the case when user chooses "allow once" permission and starts tracking.
+                        // When the app is reopened, the status will be notDetermined, 
+                        // but the isTracking flag will still be true.
+                        isTracking = false
+                    }
                 default:
                     break
                 }
             }
+    }
+
+    private func setupMapView() {
+        mapView.camera.centerCoordinate = CLLocationCoordinate2D(latitude: Coordinates.initialLatitude,
+                                                                 longitude: Coordinates.initialLongitude)
+        mapView.camera.centerCoordinateDistance = .greatestFiniteMagnitude
     }
 
     private func startTracking() {
