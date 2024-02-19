@@ -27,4 +27,5 @@ protocol LocationService {
     var locationError: LocationErrorSubject { get }
 
     func startUpdatingLocation()
+    func stopUpdatingLocation()
 }
