@@ -9,3 +9,11 @@ enum Coordinates {
     static let initialLatitude = 14.6349
     static let initialLongitude = -90.5069
 }
+
+enum Tracking {
+    static let isTracking = "isTracking"
+}
+
+enum StoryboardIDs {
+    static let map = "Map"
+}

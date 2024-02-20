@@ -15,12 +15,14 @@ final class MapViewModel {
 
     // MARK: Private properties
 
-    @Injected private var locationService: LocationService
+    private var locationService: LocationService
     private var cancellables = Set<AnyCancellable>()
 
     // MARK: Initializers
 
-    init() {
+    init(locationService: LocationService) {
+        self.locationService = locationService
+
         subscribeToLocationServiceChanges()
     }
 

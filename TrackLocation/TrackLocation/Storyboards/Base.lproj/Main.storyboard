@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Map view configurations" minToolsVersion="14.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -13,55 +14,103 @@
         <!--Map View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="TrackLocation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Map" id="BYZ-38-t0r" customClass="MapViewController" customModule="TrackLocation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vEi-8b-sZh">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                                <standardMapConfiguration key="preferredConfiguration"/>
+                                <color key="tintColor" red="0.34509803921568627" green="0.56862745098039214" blue="0.71764705882352942" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <standardMapConfiguration key="preferredConfiguration" emphasisStyle="muted">
+                                    <pointOfInterestFilter key="pointOfInterestFilter">
+                                        <excludedCategories/>
+                                    </pointOfInterestFilter>
+                                </standardMapConfiguration>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iHY-dQ-q8f">
-                                <rect key="frame" x="63" y="734" width="61.333333333333343" height="37"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Start"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="sjS-YS-vlJ">
+                                <rect key="frame" x="40" y="718" width="313" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iHY-dQ-q8f">
+                                        <rect key="frame" x="0.0" y="0.0" width="144" height="50"/>
+                                        <color key="backgroundColor" red="0.34509803921568627" green="0.56862745098039214" blue="0.71764705882352942" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <imageReference key="image" image="location.fill" catalog="system" symbolScale="medium"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="startTrackingAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="T9Y-mS-E7f"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SgX-sr-VKq">
+                                        <rect key="frame" x="169" y="0.0" width="144" height="50"/>
+                                        <color key="backgroundColor" red="0.55509306277759729" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <imageReference key="image" image="location.slash.fill" catalog="system" symbolScale="medium"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="stopTrackingAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7ik-KM-I30"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="p6m-aa-mqe"/>
+                                </constraints>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xHF-rp-jA0">
+                                <rect key="frame" x="86.666666666666686" y="99" width="220" height="40"/>
+                                <color key="backgroundColor" red="0.34509803919999998" green="0.56862745100000001" blue="0.71764705880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="220" id="E7H-jc-Lg5"/>
+                                    <constraint firstAttribute="height" constant="40" id="fvc-SD-VmL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <imageReference key="image" image="location.fill" catalog="system" symbolScale="medium"/>
+                                </state>
                                 <connections>
-                                    <action selector="startTrackingAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="T9Y-mS-E7f"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SgX-sr-VKq">
-                                <rect key="frame" x="266.33333333333331" y="734" width="59.666666666666686" height="37"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Stop"/>
-                                <connections>
-                                    <action selector="stopTrackingAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7ik-KM-I30"/>
+                                    <action selector="enableLocationAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="G1s-ou-BaK"/>
                                 </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="xHF-rp-jA0" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="0CX-3D-0at"/>
+                            <constraint firstItem="xHF-rp-jA0" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="3hR-p7-WNc"/>
                             <constraint firstItem="vEi-8b-sZh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="5eZ-M6-lxF"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="SgX-sr-VKq" secondAttribute="trailing" constant="67" id="7Eh-aX-GwI"/>
+                            <constraint firstItem="sjS-YS-vlJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="40" id="8qZ-1q-gjQ"/>
+                            <constraint firstItem="sjS-YS-vlJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="APL-Gp-TE7"/>
                             <constraint firstAttribute="trailing" secondItem="vEi-8b-sZh" secondAttribute="trailing" id="B6h-6E-Knm"/>
                             <constraint firstItem="vEi-8b-sZh" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="ID5-Vq-lGb"/>
-                            <constraint firstItem="iHY-dQ-q8f" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="63" id="LkG-36-WaQ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="sjS-YS-vlJ" secondAttribute="bottom" constant="50" id="Jh1-6o-Nm3"/>
                             <constraint firstAttribute="bottom" secondItem="vEi-8b-sZh" secondAttribute="bottom" id="Sjw-em-6mW"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="SgX-sr-VKq" secondAttribute="bottom" constant="47" id="tiH-qn-3TD"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="iHY-dQ-q8f" secondAttribute="bottom" constant="47" id="ylD-3G-kMd"/>
+                            <constraint firstAttribute="trailing" secondItem="sjS-YS-vlJ" secondAttribute="trailing" constant="40" id="yJd-O8-mmq"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="enableLocationButton" destination="xHF-rp-jA0" id="C59-Xi-5a9"/>
                         <outlet property="mapView" destination="vEi-8b-sZh" id="GXM-9l-rVI"/>
+                        <outlet property="startTrackingButton" destination="iHY-dQ-q8f" id="xxi-Lq-APJ"/>
+                        <outlet property="stopTrackingButton" destination="SgX-sr-VKq" id="FiJ-Gw-hYE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="132" y="-27"/>
+            <point key="canvasLocation" x="130.53435114503816" y="-27.464788732394368"/>
         </scene>
     </scenes>
     <resources>
+        <image name="location.fill" catalog="system" width="128" height="119"/>
+        <image name="location.slash.fill" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
