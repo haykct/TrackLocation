@@ -22,7 +22,7 @@ final class MapViewController: UIViewController, MKMapViewDelegate {
 
     private static let buttonCornerRadius: CGFloat = 10
 
-    @Persisted("isTracking", defaultValue: false) private var isTracking: Bool
+    @Persisted(Tracking.isTracking, defaultValue: false) private var isTracking: Bool
     private let viewModel = MapViewModel(locationService: Injection.shared.container.resolve(LocationService.self)!)
     private var cancellable: AnyCancellable?
     private var alertTitle = ""
