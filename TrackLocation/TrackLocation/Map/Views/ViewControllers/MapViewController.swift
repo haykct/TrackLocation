@@ -45,36 +45,39 @@ final class MapViewController: UIViewController, MKMapViewDelegate {
             .sink { [weak self] status in
                 guard let self, let status else { return }
 
-                switch status {
-                case .authorized:
-                    changeButtonVisibility(isLocationEnabled: true)
-
-                    if isTracking {
-                        startTracking()
-                    }
-                case .notDetermined:
-                    changeButtonVisibility(isLocationEnabled: true)
-
-                    if isTracking {
-                        // This is the case when user chooses "allow once" permission and starts tracking.
-                        // When the app is reopened, the status will be notDetermined, 
-                        // but the isTracking flag will still be true.
-                        isTracking = false
-                    }
-                case .appLocationDenied:
-                    alertTitle = LocalizationKeys.appLocationOff
-                    alertMessage = LocalizationKeys.turnOnLocationSettings
-                    changeButtonVisibility(isLocationEnabled: false)
-                case .locationServicesDenied:
-                    alertTitle = LocalizationKeys.locationServicesOff
-                    alertMessage = LocalizationKeys.turnOnLocationServices
-                    changeButtonVisibility(isLocationEnabled: false)
-                case .restricted:
-                    alertTitle = LocalizationKeys.locationRestricted
-                    alertMessage = LocalizationKeys.changeRestrictionSettings
-                    changeButtonVisibility(isLocationEnabled: false)
-                }
+                handleMainFlowChanges(when: status)
             }
+    }
+    private func handleMainFlowChanges(when status: AuthorizationStatus) {
+        switch status {
+        case .authorized:
+            changeButtonVisibility(isLocationEnabled: true)
+
+            if isTracking {
+                startTracking()
+            }
+        case .notDetermined:
+            changeButtonVisibility(isLocationEnabled: true)
+
+            if isTracking {
+                // This is the case when user chooses "allow once" permission and starts tracking.
+                // When the app is reopened, the status will be notDetermined,
+                // but the isTracking flag will still be true.
+                isTracking = false
+            }
+        case .appLocationDenied:
+            setupLocationAlertDescription(title: LocalizationKeys.appLocationOff,
+                                  message: LocalizationKeys.turnOnLocationSettings)
+            changeButtonVisibility(isLocationEnabled: false)
+        case .locationServicesDenied:
+            setupLocationAlertDescription(title: LocalizationKeys.locationServicesOff,
+                                  message: LocalizationKeys.turnOnLocationServices)
+            changeButtonVisibility(isLocationEnabled: false)
+        case .restricted:
+            setupLocationAlertDescription(title: LocalizationKeys.locationRestricted,
+                                  message: LocalizationKeys.changeRestrictionSettings)
+            changeButtonVisibility(isLocationEnabled: false)
+        }
     }
 
     private func startTracking() {
@@ -105,10 +108,42 @@ final class MapViewController: UIViewController, MKMapViewDelegate {
         enableLocationButton.setTitle(LocalizationKeys.enableLocation, for: .normal)
     }
 
+    private func setupLocationAlertDescription(title: String, message: String) {
+        alertTitle = title
+        alertMessage = message
+    }
+
     private func changeButtonVisibility(isLocationEnabled: Bool) {
         startTrackingButton.isHidden = !isLocationEnabled
         stopTrackingButton.isHidden = !isLocationEnabled
         enableLocationButton.isHidden = isLocationEnabled
+    }
+
+    private func openLocationSettings() {
+        switch viewModel.authorizationStatus {
+        case .appLocationDenied:
+            if let url = URL(string: UIApplication.openSettingsURLString) {
+                UIApplication.shared.open(url)
+            }
+        case .locationServicesDenied, .restricted:
+            if let url = URL(string: "App-prefs:Privacy") {
+                UIApplication.shared.open(url)
+            }
+        default:
+            break
+        }
+    }
+
+    private func openLocationAlert() {
+        let alertController = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: LocalizationKeys.cancel, style: .default)
+        let settingsAction = UIAlertAction(title: LocalizationKeys.settings, style: .default) { [weak self] _ in
+            self?.openLocationSettings()
+        }
+
+        alertController.addAction(settingsAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true)
     }
 
     // MARK: Actions
@@ -122,25 +157,6 @@ final class MapViewController: UIViewController, MKMapViewDelegate {
     }
 
     @IBAction func enableLocationAction(_ sender: Any) {
-        let alertController = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: LocalizationKeys.cancel, style: .default)
-        let settingsAction = UIAlertAction(title: LocalizationKeys.settings, style: .default) { [weak self] _ in
-            switch self?.viewModel.authorizationStatus {
-            case .appLocationDenied:
-                if let url = URL(string: UIApplication.openSettingsURLString) {
-                    UIApplication.shared.open(url)
-                }
-            case .locationServicesDenied, .restricted:
-                if let url = URL(string: "App-prefs:Privacy") {
-                    UIApplication.shared.open(url)
-                }
-            default:
-                break
-            }
-        }
-
-        alertController.addAction(settingsAction)
-        alertController.addAction(cancelAction)
-        present(alertController, animated: true)
+        openLocationAlert()
     }
 }
