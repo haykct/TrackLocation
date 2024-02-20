@@ -57,9 +57,17 @@ final class DefaultLocationService: NSObject, LocationService {
         case .authorizedWhenInUse, .authorizedAlways:
             authorizationStatus.send(.authorized)
         case .denied:
-            let isLocationServicesEnabled = CLLocationManager.locationServicesEnabled()
+            DispatchQueue.global().async {
+                // In case of calling this methods on the main thread compiler warns about UI unresponsiveness.
+                // We can move it to a background thread.
+                let isLocationServicesEnabled = CLLocationManager.locationServicesEnabled()
 
-            authorizationStatus.send(isLocationServicesEnabled ? .appLocationDenied : .locationServicesDenied)
+                DispatchQueue.main.async {
+                    self.authorizationStatus.send(isLocationServicesEnabled
+                                                  ? .appLocationDenied
+                                                  : .locationServicesDenied)
+                }
+            }
         case .notDetermined:
             authorizationStatus.send(.notDetermined)
         case .restricted:

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2607FB752B841B73000F2F1B /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2607FB742B841B73000F2F1B /* Localizable.xcstrings */; };
+		2607FB772B841D02000F2F1B /* LocalizationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2607FB762B841D02000F2F1B /* LocalizationKeys.swift */; };
 		26CB24E32B8132AA0018307B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CB24E22B8132AA0018307B /* AppDelegate.swift */; };
 		26CB24E52B8132AA0018307B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CB24E42B8132AA0018307B /* SceneDelegate.swift */; };
 		26CB24E72B8132AA0018307B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CB24E62B8132AA0018307B /* MapViewController.swift */; };
@@ -24,6 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2607FB742B841B73000F2F1B /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		2607FB762B841D02000F2F1B /* LocalizationKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationKeys.swift; sourceTree = "<group>"; };
 		26CB24DF2B8132AA0018307B /* TrackLocation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrackLocation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26CB24E22B8132AA0018307B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		26CB24E42B8132AA0018307B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -53,6 +57,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2607FB732B841B3E000F2F1B /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				2607FB742B841B73000F2F1B /* Localizable.xcstrings */,
+				2607FB762B841D02000F2F1B /* LocalizationKeys.swift */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
 		26CB24D62B8132A90018307B = {
 			isa = PBXGroup;
 			children = (
@@ -78,6 +91,7 @@
 				26CB25012B827E010018307B /* Services */,
 				26D991802B829D6A00161745 /* Utilities */,
 				26D9918C2B836F4900161745 /* Constants */,
+				2607FB732B841B3E000F2F1B /* Localization */,
 				26CB24FB2B827D4A0018307B /* SupportingFiles */,
 			);
 			path = TrackLocation;
@@ -261,6 +275,7 @@
 			files = (
 				26CB24EF2B8132AB0018307B /* LaunchScreen.storyboard in Resources */,
 				26CB24EC2B8132AB0018307B /* Assets.xcassets in Resources */,
+				2607FB752B841B73000F2F1B /* Localizable.xcstrings in Resources */,
 				26CB24EA2B8132AA0018307B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -295,6 +310,7 @@
 			files = (
 				26D991832B829D8900161745 /* Injection.swift in Sources */,
 				26CB24E72B8132AA0018307B /* MapViewController.swift in Sources */,
+				2607FB772B841D02000F2F1B /* LocalizationKeys.swift in Sources */,
 				26D9918B2B82D4C300161745 /* Persisted.swift in Sources */,
 				26CB24E32B8132AA0018307B /* AppDelegate.swift in Sources */,
 				26CB24FA2B817A830018307B /* LocationService.swift in Sources */,
@@ -474,6 +490,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tracklocation.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -507,6 +526,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tracklocation.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
