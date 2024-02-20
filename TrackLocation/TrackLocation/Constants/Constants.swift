@@ -13,3 +13,7 @@ enum Coordinates {
 enum Tracking {
     static let isTracking = "isTracking"
 }
+
+enum StoryboardIDs {
+    static let map = "Map"
+}

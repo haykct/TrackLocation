@@ -16,17 +16,30 @@ final class MapViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet private var mapView: MKMapView!
     @IBOutlet private var startTrackingButton: UIButton!
     @IBOutlet private var stopTrackingButton: UIButton!
-    @IBOutlet weak var enableLocationButton: UIButton!
+    @IBOutlet private var enableLocationButton: UIButton!
 
     // MARK: Private properties
 
     private static let buttonCornerRadius: CGFloat = 10
 
     @Persisted(Tracking.isTracking, defaultValue: false) private var isTracking: Bool
-    private let viewModel = MapViewModel(locationService: Injection.shared.container.resolve(LocationService.self)!)
+    private let viewModel: MapViewModel
     private var cancellable: AnyCancellable?
     private var alertTitle = ""
     private var alertMessage = ""
+
+    // MARK: Initializers
+
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
+        fatalError("Use `init(coder:)` to initialize an `MapViewController` instance.")
+    }
+
+    init?(coder: NSCoder, viewModel: MapViewModel) {
+        self.viewModel = viewModel
+
+        super.init(coder: coder)
+    }
 
     // MARK: Lifecycle methods
 
@@ -48,6 +61,7 @@ final class MapViewController: UIViewController, MKMapViewDelegate {
                 handleMainFlowChanges(when: status)
             }
     }
+
     private func handleMainFlowChanges(when status: AuthorizationStatus) {
         switch status {
         case .authorized:
