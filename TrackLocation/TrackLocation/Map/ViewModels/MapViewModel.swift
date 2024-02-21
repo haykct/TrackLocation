@@ -7,43 +7,6 @@
 
 import Combine
 import CoreLocation
-import Foundation
-
-struct MapViewData {
-    var traveledDistance: Double
-
-    mutating func update(previousLocation: CLLocation?, currentLocation: CLLocation) {
-        if let previousLocation {
-            traveledDistance += previousLocation.distance(from: currentLocation)
-        }
-    }
-}
-
-struct Storage {
-    private static var value: Any?
-
-    private init() {}
-
-    static func storeTemporarily(_ value: Any) {
-        self.value = value
-    }
-
-    static func fetch(forKey key: String) -> Any? {
-        UserDefaults.standard.object(forKey: key)
-    }
-
-    static func save(forKey key: String) {
-        if let value {
-            UserDefaults.standard.setValue(value, forKey: key)
-        }
-    }
-
-    static func remove(forKey key: String) {
-        UserDefaults.standard.removeObject(forKey: key)
-
-        value = nil
-    }
-}
 
 final class MapViewModel {
     // MARK: Public properties
@@ -61,10 +24,10 @@ final class MapViewModel {
     // MARK: Initializers
 
     init(locationService: LocationService) {
-        let currentdDistance = (Storage.fetch(forKey: UserDefaultsKeys.distance) as? Double) ?? 0
+        let currentDistance = (Storage.fetchValue(forKey: UserDefaultsKeys.distance) as? Double) ?? 0
 
         self.locationService = locationService
-        self.viewData = MapViewData(traveledDistance: currentdDistance)
+        self.viewData = MapViewData(traveledDistanceValue: currentDistance)
 
         subscribeToLocationServiceChanges()
     }
@@ -84,8 +47,8 @@ final class MapViewModel {
     }
 
     func resetDistance() {
-        Storage.remove(forKey: UserDefaultsKeys.distance)
-        viewData.traveledDistance = 0
+        Storage.removeValue(forKey: UserDefaultsKeys.distance)
+        viewData.resetTraveledDistance()
     }
 
     // MARK: Private methods
@@ -108,8 +71,8 @@ final class MapViewModel {
                 guard let self else { return }
 
                 viewData.update(previousLocation: previousLocation, currentLocation: currentLocation)
-                Storage.storeTemporarily(viewData.traveledDistance)
-                
+                Storage.storeTemporarily(viewData.traveledDistanceValue)
+
                 previousLocation = currentLocation
             }
             .store(in: &cancellables)

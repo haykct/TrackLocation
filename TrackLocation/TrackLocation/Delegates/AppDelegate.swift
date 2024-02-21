@@ -24,6 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        Storage.save(forKey: UserDefaultsKeys.distance)
+        Storage.saveValue(forKey: UserDefaultsKeys.distance)
     }
 }
