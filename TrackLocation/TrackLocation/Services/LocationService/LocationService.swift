@@ -6,6 +6,7 @@
 //
 
 import Combine
+import CoreLocation
 
 enum AuthorizationStatus {
     case authorized
@@ -22,9 +23,11 @@ enum LocationError: Error {
 protocol LocationService {
     typealias LocationErrorSubject = PassthroughSubject<Error, Never>
     typealias StatusSubject = PassthroughSubject<AuthorizationStatus, Never>
+    typealias LocationSubject = PassthroughSubject<CLLocation, Never>
 
     var authorizationStatus: StatusSubject { get }
     var locationError: LocationErrorSubject { get }
+    var location: LocationSubject { get }
 
     func startUpdatingLocation()
     func stopUpdatingLocation()

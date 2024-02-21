@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,5 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      configurationForConnecting connectingSceneSession: UISceneSession,
                      options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+    }
+
+    func applicationWillTerminate(_ application: UIApplication) {
+        Storage.save(forKey: UserDefaultsKeys.distance)
     }
 }

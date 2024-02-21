@@ -18,13 +18,14 @@ final class MapViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet private var stopTrackingButton: UIButton!
     @IBOutlet private var enableLocationButton: UIButton!
 
+    @IBOutlet weak var label: UILabel!
     // MARK: Private properties
 
     private static let buttonCornerRadius: CGFloat = 10
-
-    @Persisted(Tracking.isTracking, defaultValue: false) private var isTracking: Bool
     private let viewModel: MapViewModel
-    private var cancellable: AnyCancellable?
+
+    @Persisted(UserDefaultsKeys.shouldTrack, defaultValue: false) private var shouldTrack: Bool
+    private var cancellables = Set<AnyCancellable>()
     private var alertTitle = ""
     private var alertMessage = ""
 
@@ -48,37 +49,41 @@ final class MapViewController: UIViewController, MKMapViewDelegate {
 
         setupMapView()
         setupButtons()
-        subscribeToAuthorizationStatusChanges()
+        subscribeToViewModelChanges()
     }
 
     // MARK: Private methods
 
-    private func subscribeToAuthorizationStatusChanges() {
-        cancellable = viewModel.$authorizationStatus
+    private func subscribeToViewModelChanges() {
+        viewModel.$authorizationStatus
             .sink { [weak self] status in
                 guard let self, let status else { return }
 
                 handleMainFlowChanges(when: status)
             }
+            .store(in: &cancellables)
+
+        viewModel.$viewData
+            .sink { [weak self] viewData in
+                self?.label.text = String(viewData.traveledDistance)
+            }
+            .store(in: &cancellables)
     }
 
     private func handleMainFlowChanges(when status: AuthorizationStatus) {
+        if status != .authorized {
+            stopTracking()
+        }
+
         switch status {
         case .authorized:
             changeButtonVisibility(isLocationEnabled: true)
 
-            if isTracking {
+            if shouldTrack {
                 startTracking()
             }
         case .notDetermined:
             changeButtonVisibility(isLocationEnabled: true)
-
-            if isTracking {
-                // This is the case when user chooses "allow once" permission and starts tracking.
-                // When the app is reopened, the status will be notDetermined,
-                // but the isTracking flag will still be true.
-                isTracking = false
-            }
         case .appLocationDenied:
             setupLocationAlertDescription(title: LocalizationKeys.appLocationOff,
                                   message: LocalizationKeys.turnOnLocationSettings)
@@ -95,16 +100,15 @@ final class MapViewController: UIViewController, MKMapViewDelegate {
     }
 
     private func startTracking() {
-        isTracking = true
         mapView.setUserTrackingMode(.follow, animated: true)
         viewModel.startUpdatingLocation()
     }
 
     private func stopTracking() {
-        isTracking = false
-        mapView.setUserTrackingMode(.none, animated: true)
         mapView.showsUserLocation = false
+        mapView.setUserTrackingMode(.none, animated: true)
         viewModel.stopUpdatingLocation()
+        viewModel.resetPreviousLocation()
     }
 
     private func setupMapView() {
@@ -163,11 +167,14 @@ final class MapViewController: UIViewController, MKMapViewDelegate {
     // MARK: Actions
 
     @IBAction private func startTrackingAction(_ sender: Any) {
+        shouldTrack = true
         startTracking()
     }
 
     @IBAction private func stopTrackingAction(_ sender: Any) {
+        shouldTrack = false
         stopTracking()
+        viewModel.resetDistance()
     }
 
     @IBAction func enableLocationAction(_ sender: Any) {

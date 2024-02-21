@@ -10,9 +10,12 @@ import CoreLocation
 final class DefaultLocationService: NSObject, LocationService {
 
     // MARK: Public properties
+    private static let allowedTimestampInterval: Double = 2
+
     // Keeping as a subject since property wrappers(@Published) aren't allowed in protocols.
     private(set) var authorizationStatus = LocationService.StatusSubject()
     private(set) var locationError = LocationService.LocationErrorSubject()
+    private(set) var location = LocationService.LocationSubject()
 
     // MARK: Private properties
 
@@ -46,6 +49,8 @@ final class DefaultLocationService: NSObject, LocationService {
     // MARK: Private methods
 
     private func setupLocationManager() {
+        // You can also use kCLLocationAccuracyBestForNavigation but it may consume the battery power faster.
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.pausesLocationUpdatesAutomatically = false
         locationManager.allowsBackgroundLocationUpdates = true
         locationManager.showsBackgroundLocationIndicator = true
@@ -82,7 +87,10 @@ final class DefaultLocationService: NSObject, LocationService {
 
 extension DefaultLocationService: CLLocationManagerDelegate {
     func locationManager(_: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-
+        if let lastLocation = locations.last,
+            abs(lastLocation.timestamp.timeIntervalSinceNow) <= DefaultLocationService.allowedTimestampInterval {
+            location.send(lastLocation)
+        }
     }
 
     func locationManagerDidChangeAuthorization(_: CLLocationManager) {
