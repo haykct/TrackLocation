@@ -7,13 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26047EF32B86C1F2000A1F6A /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26047EF22B86C1F2000A1F6A /* Storage.swift */; };
+		26047EF52B86C224000A1F6A /* MapViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26047EF42B86C224000A1F6A /* MapViewData.swift */; };
+		26047EF82B875D3F000A1F6A /* TraveledDistanceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26047EF72B875D3F000A1F6A /* TraveledDistanceView.xib */; };
+		26047EFA2B875D81000A1F6A /* TraveledDistanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26047EF92B875D81000A1F6A /* TraveledDistanceView.swift */; };
+		26047EFD2B8777A4000A1F6A /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26047EFC2B8777A4000A1F6A /* Colors.xcassets */; };
+		26047F002B87C316000A1F6A /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26047EFF2B87C316000A1F6A /* UIView.swift */; };
 		2607FB752B841B73000F2F1B /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2607FB742B841B73000F2F1B /* Localizable.xcstrings */; };
 		2607FB772B841D02000F2F1B /* LocalizationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2607FB762B841D02000F2F1B /* LocalizationKeys.swift */; };
 		26CB24E32B8132AA0018307B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CB24E22B8132AA0018307B /* AppDelegate.swift */; };
 		26CB24E52B8132AA0018307B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CB24E42B8132AA0018307B /* SceneDelegate.swift */; };
 		26CB24E72B8132AA0018307B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CB24E62B8132AA0018307B /* MapViewController.swift */; };
 		26CB24EA2B8132AA0018307B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26CB24E82B8132AA0018307B /* Main.storyboard */; };
-		26CB24EC2B8132AB0018307B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26CB24EB2B8132AB0018307B /* Assets.xcassets */; };
+		26CB24EC2B8132AB0018307B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26CB24EB2B8132AB0018307B /* Images.xcassets */; };
 		26CB24EF2B8132AB0018307B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26CB24ED2B8132AB0018307B /* LaunchScreen.storyboard */; };
 		26CB24F82B8146DD0018307B /* DefaultLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CB24F72B8146DD0018307B /* DefaultLocationService.swift */; };
 		26CB24FA2B817A830018307B /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CB24F92B817A830018307B /* LocationService.swift */; };
@@ -25,6 +31,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		26047EF22B86C1F2000A1F6A /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		26047EF42B86C224000A1F6A /* MapViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewData.swift; sourceTree = "<group>"; };
+		26047EF72B875D3F000A1F6A /* TraveledDistanceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TraveledDistanceView.xib; sourceTree = "<group>"; };
+		26047EF92B875D81000A1F6A /* TraveledDistanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraveledDistanceView.swift; sourceTree = "<group>"; };
+		26047EFC2B8777A4000A1F6A /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		26047EFF2B87C316000A1F6A /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		2607FB742B841B73000F2F1B /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		2607FB762B841D02000F2F1B /* LocalizationKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationKeys.swift; sourceTree = "<group>"; };
 		26CB24DF2B8132AA0018307B /* TrackLocation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrackLocation.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -32,7 +44,7 @@
 		26CB24E42B8132AA0018307B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		26CB24E62B8132AA0018307B /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		26CB24E92B8132AA0018307B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		26CB24EB2B8132AB0018307B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		26CB24EB2B8132AB0018307B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		26CB24EE2B8132AB0018307B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		26CB24F02B8132AB0018307B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		26CB24F72B8146DD0018307B /* DefaultLocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLocationService.swift; sourceTree = "<group>"; };
@@ -55,6 +67,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		26047EF62B875D12000A1F6A /* UIViews */ = {
+			isa = PBXGroup;
+			children = (
+				26047EF72B875D3F000A1F6A /* TraveledDistanceView.xib */,
+				26047EF92B875D81000A1F6A /* TraveledDistanceView.swift */,
+			);
+			path = UIViews;
+			sourceTree = "<group>";
+		};
+		26047EFB2B87773E000A1F6A /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				26CB24EB2B8132AB0018307B /* Images.xcassets */,
+				26047EFC2B8777A4000A1F6A /* Colors.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		26047EFE2B87C2F8000A1F6A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				26047EFF2B87C316000A1F6A /* UIView.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		2607FB732B841B3E000F2F1B /* Localization */ = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +126,7 @@
 				26CB24FF2B827DD50018307B /* Map */,
 				26CB25012B827E010018307B /* Services */,
 				26D991802B829D6A00161745 /* Utilities */,
+				26047EFE2B87C2F8000A1F6A /* Extensions */,
 				26D9918C2B836F4900161745 /* Constants */,
 				2607FB732B841B3E000F2F1B /* Localization */,
 				26CB24FB2B827D4A0018307B /* SupportingFiles */,
@@ -98,7 +137,7 @@
 		26CB24FB2B827D4A0018307B /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
-				26CB24EB2B8132AB0018307B /* Assets.xcassets */,
+				26047EFB2B87773E000A1F6A /* Assets */,
 				26CB24F02B8132AB0018307B /* Info.plist */,
 			);
 			path = SupportingFiles;
@@ -160,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				26CB25002B827DF40018307B /* ViewControllers */,
+				26047EF62B875D12000A1F6A /* UIViews */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -168,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				26CB25062B828D7A0018307B /* MapViewModel.swift */,
+				26047EF42B86C224000A1F6A /* MapViewData.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -193,6 +234,7 @@
 			isa = PBXGroup;
 			children = (
 				26D9918A2B82D4C300161745 /* Persisted.swift */,
+				26047EF22B86C1F2000A1F6A /* Storage.swift */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -270,8 +312,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26047EF82B875D3F000A1F6A /* TraveledDistanceView.xib in Resources */,
 				26CB24EF2B8132AB0018307B /* LaunchScreen.storyboard in Resources */,
-				26CB24EC2B8132AB0018307B /* Assets.xcassets in Resources */,
+				26CB24EC2B8132AB0018307B /* Images.xcassets in Resources */,
+				26047EFD2B8777A4000A1F6A /* Colors.xcassets in Resources */,
 				2607FB752B841B73000F2F1B /* Localizable.xcstrings in Resources */,
 				26CB24EA2B8132AA0018307B /* Main.storyboard in Resources */,
 			);
@@ -306,15 +350,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				26D991832B829D8900161745 /* Injection.swift in Sources */,
+				26047EF32B86C1F2000A1F6A /* Storage.swift in Sources */,
 				26CB24E72B8132AA0018307B /* MapViewController.swift in Sources */,
 				2607FB772B841D02000F2F1B /* LocalizationKeys.swift in Sources */,
+				26047EFA2B875D81000A1F6A /* TraveledDistanceView.swift in Sources */,
 				26D9918B2B82D4C300161745 /* Persisted.swift in Sources */,
 				26CB24E32B8132AA0018307B /* AppDelegate.swift in Sources */,
 				26CB24FA2B817A830018307B /* LocationService.swift in Sources */,
 				26D9918E2B836F5F00161745 /* Constants.swift in Sources */,
 				26CB24F82B8146DD0018307B /* DefaultLocationService.swift in Sources */,
+				26047F002B87C316000A1F6A /* UIView.swift in Sources */,
 				26CB24E52B8132AA0018307B /* SceneDelegate.swift in Sources */,
 				26CB25072B828D7A0018307B /* MapViewModel.swift in Sources */,
+				26047EF52B86C224000A1F6A /* MapViewData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,8 +524,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -488,10 +535,10 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -512,8 +559,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -524,10 +570,10 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

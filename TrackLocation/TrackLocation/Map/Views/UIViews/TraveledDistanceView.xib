@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TraveledDistanceView" customModule="TrackLocation" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="90" height="130"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bo0-ZJ-iDW">
+                    <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="bz2-LN-TAL">
+                            <rect key="frame" x="8" y="0.0" width="74" height="90"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                            <color key="textColor" red="0.34509803921568627" green="0.56862745098039214" blue="0.71764705882352942" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.94901960784313721" alpha="0.85027449324324322" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="bz2-LN-TAL" secondAttribute="bottom" id="5k3-d5-vfh"/>
+                        <constraint firstAttribute="trailing" secondItem="bz2-LN-TAL" secondAttribute="trailing" constant="8" id="Hlo-Du-fWB"/>
+                        <constraint firstItem="bz2-LN-TAL" firstAttribute="top" secondItem="Bo0-ZJ-iDW" secondAttribute="top" id="MqR-Wu-E3t"/>
+                        <constraint firstItem="bz2-LN-TAL" firstAttribute="leading" secondItem="Bo0-ZJ-iDW" secondAttribute="leading" constant="8" id="uUO-42-k8A"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance Traveled" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZDD-cx-kkF">
+                    <rect key="frame" x="8" y="90" width="74" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="0vo-lk-LE8"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <color key="textColor" name="mapBlue"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <constraints>
+                <constraint firstItem="Bo0-ZJ-iDW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="KaO-ul-wXR"/>
+                <constraint firstItem="Bo0-ZJ-iDW" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="SlM-Nl-NJJ"/>
+                <constraint firstAttribute="trailing" secondItem="Bo0-ZJ-iDW" secondAttribute="trailing" id="X7p-Fi-3wC"/>
+                <constraint firstItem="ZDD-cx-kkF" firstAttribute="top" secondItem="Bo0-ZJ-iDW" secondAttribute="bottom" id="a3g-kG-mgA"/>
+                <constraint firstItem="ZDD-cx-kkF" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="j3Q-Fs-RYb"/>
+                <constraint firstAttribute="trailing" secondItem="ZDD-cx-kkF" secondAttribute="trailing" constant="8" id="mjN-oN-WaF"/>
+                <constraint firstAttribute="bottom" secondItem="ZDD-cx-kkF" secondAttribute="bottom" id="mwf-fl-rgv"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="circleView" destination="Bo0-ZJ-iDW" id="4bT-cU-Ni2"/>
+                <outlet property="distanceLabel" destination="bz2-LN-TAL" id="avX-Wt-OTX"/>
+            </connections>
+            <point key="canvasLocation" x="-190.83969465648855" y="-143.3098591549296"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="mapBlue">
+            <color red="0.34509803921568627" green="0.56862745098039214" blue="0.71764705882352942" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

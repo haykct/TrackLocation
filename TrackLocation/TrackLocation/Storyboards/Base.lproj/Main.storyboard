@@ -66,7 +66,7 @@
                                 <rect key="frame" x="86.666666666666686" y="99" width="220" height="40"/>
                                 <color key="backgroundColor" red="0.34509803919999998" green="0.56862745100000001" blue="0.71764705880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="220" id="E7H-jc-Lg5"/>
+                                    <constraint firstAttribute="width" constant="220" id="E7H-jc-Lg5"/>
                                     <constraint firstAttribute="height" constant="40" id="fvc-SD-VmL"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
