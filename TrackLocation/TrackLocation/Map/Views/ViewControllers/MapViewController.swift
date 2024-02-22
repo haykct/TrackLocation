@@ -18,13 +18,13 @@ final class MapViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet private var stopTrackingButton: UIButton!
     @IBOutlet private var enableLocationButton: UIButton!
 
-    @IBOutlet weak var label: UILabel!
     // MARK: Private properties
 
     private static let buttonCornerRadius: CGFloat = 10
     private let viewModel: MapViewModel
 
     @Persisted(UserDefaultsKeys.shouldTrack, defaultValue: false) private var shouldTrack: Bool
+    private var traveledDistanceView: TraveledDistanceView?
     private var cancellables = Set<AnyCancellable>()
     private var alertTitle = ""
     private var alertMessage = ""
@@ -49,12 +49,13 @@ final class MapViewController: UIViewController, MKMapViewDelegate {
 
         setupMapView()
         setupButtons()
-        subscribeToViewModelChanges()
+        setupTraveledDistanceView()
+        subscribeToViewModelUpdates()
     }
 
     // MARK: Private methods
 
-    private func subscribeToViewModelChanges() {
+    private func subscribeToViewModelUpdates() {
         viewModel.$authorizationStatus
             .sink { [weak self] status in
                 guard let self, let status else { return }
@@ -65,7 +66,7 @@ final class MapViewController: UIViewController, MKMapViewDelegate {
 
         viewModel.$mapViewData
             .sink { [weak self] viewData in
-                self?.label.text = viewData.traveledDistance
+                self?.traveledDistanceView?.distanceLabel.text = viewData.traveledDistance
             }
             .store(in: &cancellables)
     }
@@ -100,14 +101,12 @@ final class MapViewController: UIViewController, MKMapViewDelegate {
     }
 
     private func startTracking() {
-        label.isHidden = false
         mapView.setUserTrackingMode(.follow, animated: true)
         viewModel.startUpdatingLocation()
     }
 
     private func stopTracking() {
         mapView.showsUserLocation = false
-        label.isHidden = true
         mapView.setUserTrackingMode(.none, animated: true)
         viewModel.stopUpdatingLocation()
     }
@@ -127,6 +126,14 @@ final class MapViewController: UIViewController, MKMapViewDelegate {
         enableLocationButton.setTitle(LocalizationKeys.enableLocation, for: .normal)
     }
 
+    private func setupTraveledDistanceView() {
+        guard let distanceView: TraveledDistanceView = .fromNib() else { return }
+
+        distanceView.frame = CGRect(x: 40, y: 160, width: 90, height: 90)
+        view.addSubview(distanceView)
+        traveledDistanceView = distanceView
+    }
+
     private func setupLocationAlertDescription(title: String, message: String) {
         alertTitle = title
         alertMessage = message
@@ -136,6 +143,7 @@ final class MapViewController: UIViewController, MKMapViewDelegate {
         startTrackingButton.isHidden = !isLocationEnabled
         stopTrackingButton.isHidden = !isLocationEnabled
         enableLocationButton.isHidden = isLocationEnabled
+        traveledDistanceView?.isHidden = !isLocationEnabled
     }
 
     private func openLocationSettings() {
@@ -180,5 +188,11 @@ final class MapViewController: UIViewController, MKMapViewDelegate {
 
     @IBAction func enableLocationAction(_ sender: Any) {
         openLocationAlert()
+    }
+}
+
+extension UIView {
+    class func fromNib<T: UIView>() -> T? {
+        Bundle(for: T.self).loadNibNamed(String(describing: T.self), owner: nil, options: nil)?[0] as? T
     }
 }

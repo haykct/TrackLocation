@@ -11,7 +11,7 @@ struct MapViewData {
 
     // MARK: Public properties
 
-    private(set) var traveledDistance: String = ""
+    private(set) var traveledDistance: String = "0m"
 
     // MARK: Private properties
 

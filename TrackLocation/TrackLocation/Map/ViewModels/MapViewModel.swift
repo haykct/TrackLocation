@@ -30,7 +30,7 @@ final class MapViewModel {
         self.viewData = MapViewData(traveledDistanceValue: currentDistance)
         self.mapViewData = viewData
 
-        subscribeToLocationServiceChanges()
+        subscribeToLocationServiceUpdates()
     }
 
     // MARK: Public methods
@@ -47,11 +47,12 @@ final class MapViewModel {
     func resetDistance() {
         Storage.removeValue(forKey: UserDefaultsKeys.distance)
         viewData.resetTraveledDistance()
+        mapViewData = viewData
     }
 
     // MARK: Private methods
 
-    private func subscribeToLocationServiceChanges() {
+    private func subscribeToLocationServiceUpdates() {
         locationService.authorizationStatus
             .sink(receiveValue: { [weak self] status in
                 self?.authorizationStatus = status
