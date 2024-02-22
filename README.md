@@ -24,11 +24,11 @@ If you are using a simulator, you will need to simulate location changes for the
 To simulate a location change, open the iOS simulator, open "Features" in the upper left corner 
 of the screen, select "Location" and choose one of your preferred simulation methods.
 Tap on the "Start Tracking" button and you will be prompted to give the app permission to track your location.
-If you select "Allow Once", you give the app one-time permission to track your location. 
+If you select "Allow Once", you will give the app one-time permission to track your location. 
 The next time you open the app, you will be prompted to give permission again.
-If you select "Allow While Using App", you give the app a "provisional" always permission.
+If you select "Allow While Using App", you will give the app a "provisional" always permission.
 The next time you open the app, you will not be asked for permission, but you will be prompted to change 
-the permission to "Always Allow" (make it non provisional) or return back to "Allow While Using App" permission.
+the permission to "Always Allow" (make it non provisional) or return back to "Allow While Using App" permission at a certain point in time.
 If you select "Don't allow", the app will not be able to track your location (you can change the permission later in the app settings).
 Make sure to select "Allow While Using App" during the first prompt and "Change The Permission To Always Allow" during the second prompt 
 to give the app permission to track your location when it is in the foreground, in the background, or not running at all.
