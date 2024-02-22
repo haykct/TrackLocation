@@ -12,7 +12,11 @@ struct MapViewData {
     // MARK: Public properties
 
     private(set) var traveledDistance: String = ""
-    private(set) var traveledDistanceValue: Double {
+
+    // MARK: Private properties
+
+    private var previousLocation: CLLocation?
+    private var traveledDistanceValue: Double {
         didSet {
             setupTraveledDistance()
         }
@@ -26,14 +30,21 @@ struct MapViewData {
 
     // MARK: Public methods
 
-    mutating func update(previousLocation: CLLocation?, currentLocation: CLLocation) {
+    mutating func update(_ currentLocation: CLLocation) {
         if let previousLocation {
             traveledDistanceValue += previousLocation.distance(from: currentLocation)
+            Storage.storeTemporarily(traveledDistanceValue)
         }
+
+        previousLocation = currentLocation
     }
 
     mutating func resetTraveledDistance() {
         traveledDistanceValue = 0
+    }
+
+    mutating func resetPreviousLocation() {
+        previousLocation = nil
     }
 
     // MARK: Private methods

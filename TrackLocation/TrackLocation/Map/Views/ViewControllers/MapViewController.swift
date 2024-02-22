@@ -63,7 +63,7 @@ final class MapViewController: UIViewController, MKMapViewDelegate {
             }
             .store(in: &cancellables)
 
-        viewModel.$viewData
+        viewModel.$mapViewData
             .sink { [weak self] viewData in
                 self?.label.text = viewData.traveledDistance
             }
@@ -110,7 +110,6 @@ final class MapViewController: UIViewController, MKMapViewDelegate {
         label.isHidden = true
         mapView.setUserTrackingMode(.none, animated: true)
         viewModel.stopUpdatingLocation()
-        viewModel.resetPreviousLocation()
     }
 
     private func setupMapView() {

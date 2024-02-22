@@ -13,12 +13,12 @@ final class MapViewModel {
 
     @Published private(set) var authorizationStatus: AuthorizationStatus?
     @Published private(set) var serviceError: LocationError?
-    @Published private(set) var viewData: MapViewData
+    @Published private(set) var mapViewData: MapViewData
 
     // MARK: Private properties
 
     private var locationService: LocationService
-    private var previousLocation: CLLocation?
+    private var viewData: MapViewData
     private var cancellables = Set<AnyCancellable>()
 
     // MARK: Initializers
@@ -28,6 +28,7 @@ final class MapViewModel {
 
         self.locationService = locationService
         self.viewData = MapViewData(traveledDistanceValue: currentDistance)
+        self.mapViewData = viewData
 
         subscribeToLocationServiceChanges()
     }
@@ -40,10 +41,7 @@ final class MapViewModel {
 
     func stopUpdatingLocation() {
         locationService.stopUpdatingLocation()
-    }
-
-    func resetPreviousLocation() {
-        previousLocation = nil
+        viewData.resetPreviousLocation()
     }
 
     func resetDistance() {
@@ -70,10 +68,8 @@ final class MapViewModel {
             .sink { [weak self] currentLocation in
                 guard let self else { return }
 
-                viewData.update(previousLocation: previousLocation, currentLocation: currentLocation)
-                Storage.storeTemporarily(viewData.traveledDistanceValue)
-
-                previousLocation = currentLocation
+                viewData.update(currentLocation)
+                mapViewData = viewData
             }
             .store(in: &cancellables)
     }
