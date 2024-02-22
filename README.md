@@ -32,7 +32,7 @@ the permission to "Always Allow" (make it non provisional) or return back to "Al
 If you select "Don't allow", the app will not be able to track your location (you can change the permission later in the app settings).
 Make sure to select "Allow While Using App" during the first prompt and "Change The Permission To Always Allow" during the second prompt 
 to give the app permission to track your location when it is in the foreground, in the background, or not running at all.
-Tap on the "Strop Tracking" button if you want to stop tracking. You can start tracking again, but the distance traveled will be reset to zero.
+Tap on the "Stop Tracking" button if you want to stop tracking. You can start tracking again, but the distance traveled will be reset to zero.
 If you are using a simulator, please make sure location simulation is enabled for the app to work properly.
 
 # Dependencies
