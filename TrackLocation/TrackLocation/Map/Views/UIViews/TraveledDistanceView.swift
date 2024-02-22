@@ -11,15 +11,22 @@ class TraveledDistanceView: UIView {
 
     // MARK: Outlets
 
-    @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet private var distanceLabel: UILabel!
+    @IBOutlet private var circleView: UIView!
 
     // MARK: Lifecycle methods
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    override func layoutSubviews() {
+        super.layoutSubviews()
 
-        layer.cornerRadius = frame.width / 2
-        layer.borderWidth = 5
-        layer.borderColor = Colors.mapBlue.cgColor
+        circleView.layer.cornerRadius = frame.width / 2
+        circleView.layer.borderWidth = 5
+        circleView.layer.borderColor = Colors.mapBlue.cgColor
+    }
+
+    // MARK: Public methods
+
+    func updateDistanceText(_ text: String) {
+        distanceLabel.text = text
     }
 }

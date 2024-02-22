@@ -66,7 +66,7 @@ final class MapViewController: UIViewController, MKMapViewDelegate {
 
         viewModel.$mapViewData
             .sink { [weak self] viewData in
-                self?.traveledDistanceView?.distanceLabel.text = viewData.traveledDistance
+                self?.traveledDistanceView?.updateDistanceText(viewData.traveledDistance)
             }
             .store(in: &cancellables)
     }
@@ -129,7 +129,7 @@ final class MapViewController: UIViewController, MKMapViewDelegate {
     private func setupTraveledDistanceView() {
         guard let distanceView: TraveledDistanceView = .fromNib() else { return }
 
-        distanceView.frame = CGRect(x: 40, y: 160, width: 90, height: 90)
+        distanceView.frame = CGRect(x: 40, y: 160, width: 90, height: 130)
         view.addSubview(distanceView)
         traveledDistanceView = distanceView
     }

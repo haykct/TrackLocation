@@ -22,5 +22,5 @@ enum StoryboardIDs {
 }
 
 enum Colors {
-    static let mapBlue = UIColor(named: "mapBlue") ?? .white
+    static let mapBlue = UIColor(named: "mapBlue") ?? .clear
 }
