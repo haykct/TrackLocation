@@ -23,6 +23,8 @@ class Injection {
 }
 
 extension Injection {
+    // I used Swinject to register dependencies so I could use them
+    // in different classes by injecting them externally.
     private func register(using container: Container) {
         container.register(LocationService.self) { _ in
             DefaultLocationService(locationManager: CLLocationManager())

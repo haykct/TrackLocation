@@ -12,6 +12,7 @@
 		26047EF82B875D3F000A1F6A /* TraveledDistanceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26047EF72B875D3F000A1F6A /* TraveledDistanceView.xib */; };
 		26047EFA2B875D81000A1F6A /* TraveledDistanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26047EF92B875D81000A1F6A /* TraveledDistanceView.swift */; };
 		26047EFD2B8777A4000A1F6A /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26047EFC2B8777A4000A1F6A /* Colors.xcassets */; };
+		26047F002B87C316000A1F6A /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26047EFF2B87C316000A1F6A /* UIView.swift */; };
 		2607FB752B841B73000F2F1B /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2607FB742B841B73000F2F1B /* Localizable.xcstrings */; };
 		2607FB772B841D02000F2F1B /* LocalizationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2607FB762B841D02000F2F1B /* LocalizationKeys.swift */; };
 		26CB24E32B8132AA0018307B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CB24E22B8132AA0018307B /* AppDelegate.swift */; };
@@ -35,6 +36,7 @@
 		26047EF72B875D3F000A1F6A /* TraveledDistanceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TraveledDistanceView.xib; sourceTree = "<group>"; };
 		26047EF92B875D81000A1F6A /* TraveledDistanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraveledDistanceView.swift; sourceTree = "<group>"; };
 		26047EFC2B8777A4000A1F6A /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		26047EFF2B87C316000A1F6A /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		2607FB742B841B73000F2F1B /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		2607FB762B841D02000F2F1B /* LocalizationKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationKeys.swift; sourceTree = "<group>"; };
 		26CB24DF2B8132AA0018307B /* TrackLocation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrackLocation.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,6 +85,14 @@
 			path = Assets;
 			sourceTree = "<group>";
 		};
+		26047EFE2B87C2F8000A1F6A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				26047EFF2B87C316000A1F6A /* UIView.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		2607FB732B841B3E000F2F1B /* Localization */ = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +126,7 @@
 				26CB24FF2B827DD50018307B /* Map */,
 				26CB25012B827E010018307B /* Services */,
 				26D991802B829D6A00161745 /* Utilities */,
+				26047EFE2B87C2F8000A1F6A /* Extensions */,
 				26D9918C2B836F4900161745 /* Constants */,
 				2607FB732B841B3E000F2F1B /* Localization */,
 				26CB24FB2B827D4A0018307B /* SupportingFiles */,
@@ -348,6 +359,7 @@
 				26CB24FA2B817A830018307B /* LocationService.swift in Sources */,
 				26D9918E2B836F5F00161745 /* Constants.swift in Sources */,
 				26CB24F82B8146DD0018307B /* DefaultLocationService.swift in Sources */,
+				26047F002B87C316000A1F6A /* UIView.swift in Sources */,
 				26CB24E52B8132AA0018307B /* SceneDelegate.swift in Sources */,
 				26CB25072B828D7A0018307B /* MapViewModel.swift in Sources */,
 				26047EF52B86C224000A1F6A /* MapViewData.swift in Sources */,

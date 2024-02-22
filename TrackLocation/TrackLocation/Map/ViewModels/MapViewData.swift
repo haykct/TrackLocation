@@ -33,6 +33,9 @@ struct MapViewData {
     mutating func update(_ currentLocation: CLLocation) {
         if let previousLocation {
             traveledDistanceValue += previousLocation.distance(from: currentLocation)
+            // Since we get location updates very often, it would be wrong to save them
+            // in cash every time we get them. Here we store the latest value in a variable
+            // and save it in cash only when app terminates.
             Storage.storeTemporarily(traveledDistanceValue)
         }
 

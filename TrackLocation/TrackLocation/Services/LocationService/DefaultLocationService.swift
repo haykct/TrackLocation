@@ -12,7 +12,7 @@ final class DefaultLocationService: NSObject, LocationService {
     // MARK: Public properties
     private static let allowedTimestampInterval: Double = 2
 
-    // Keeping as a subject since property wrappers(@Published) aren't allowed in protocols.
+    // Keeping as subjects since property wrappers(@Published) aren't allowed in protocols.
     private(set) var authorizationStatus = LocationService.StatusSubject()
     private(set) var locationError = LocationService.LocationErrorSubject()
     private(set) var location = LocationService.LocationSubject()
@@ -37,6 +37,12 @@ final class DefaultLocationService: NSObject, LocationService {
             locationManager.requestAlwaysAuthorization()
         }
 
+        // Monitoring significant location changes is used to get location updates
+        // even when the app isn't running. The startUpdatingLocation call is used to get
+        // location updates in foreground and background modes only. Here I've called them both
+        // to get location updates in foreground and background, as well as CONSTANT location updates
+        // when the app is not running, since calling only startMonitoringSignificantLocationChanges would update
+        // the location every time device moves 500 meters or more.
         locationManager.startMonitoringSignificantLocationChanges()
         locationManager.startUpdatingLocation()
     }
@@ -64,7 +70,7 @@ final class DefaultLocationService: NSObject, LocationService {
         case .denied:
             DispatchQueue.global().async {
                 // In case of calling this methods on the main thread compiler warns about UI unresponsiveness.
-                // We can move it to a background thread.
+                // That's why I moved it to a background thread.
                 let isLocationServicesEnabled = CLLocationManager.locationServicesEnabled()
 
                 DispatchQueue.main.async {

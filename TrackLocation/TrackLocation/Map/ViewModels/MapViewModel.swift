@@ -18,6 +18,7 @@ final class MapViewModel {
     // MARK: Private properties
 
     private var locationService: LocationService
+    // View data which calculates and stores the final representation of the data.
     private var viewData: MapViewData
     private var cancellables = Set<AnyCancellable>()
 
@@ -44,6 +45,7 @@ final class MapViewModel {
         viewData.resetPreviousLocation()
     }
 
+    // Resets the distance traveled value and updates the view, when the user presses the stop tracking button.
     func resetDistance() {
         Storage.removeValue(forKey: UserDefaultsKeys.distance)
         viewData.resetTraveledDistance()

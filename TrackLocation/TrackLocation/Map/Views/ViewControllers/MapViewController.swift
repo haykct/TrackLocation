@@ -23,6 +23,7 @@ final class MapViewController: UIViewController, MKMapViewDelegate {
     private static let buttonCornerRadius: CGFloat = 10
     private let viewModel: MapViewModel
 
+    // A boolean flag used to retain the tracking state after an app relaunch or authorization status change.
     @Persisted(UserDefaultsKeys.shouldTrack, defaultValue: false) private var shouldTrack: Bool
     private var traveledDistanceView: TraveledDistanceView?
     private var cancellables = Set<AnyCancellable>()
@@ -33,9 +34,10 @@ final class MapViewController: UIViewController, MKMapViewDelegate {
 
     @available(*, unavailable)
     required init?(coder _: NSCoder) {
-        fatalError("Use `init(coder:)` to initialize an `MapViewController` instance.")
+        fatalError("Use `init(coder:viewModel:)` to initialize a `MapViewController` instance.")
     }
 
+    // Initializer, for passing parameters to ViewController initialized from storyboard.
     init?(coder: NSCoder, viewModel: MapViewModel) {
         self.viewModel = viewModel
 
@@ -146,6 +148,8 @@ final class MapViewController: UIViewController, MKMapViewDelegate {
         traveledDistanceView?.isHidden = !isLocationEnabled
     }
 
+    // In case of unauthorized access to location data this method opens user settings and
+    // asks the user to enable location services.
     private func openLocationSettings() {
         switch viewModel.authorizationStatus {
         case .appLocationDenied:
@@ -188,11 +192,5 @@ final class MapViewController: UIViewController, MKMapViewDelegate {
 
     @IBAction func enableLocationAction(_ sender: Any) {
         openLocationAlert()
-    }
-}
-
-extension UIView {
-    class func fromNib<T: UIView>() -> T? {
-        Bundle(for: T.self).loadNibNamed(String(describing: T.self), owner: nil, options: nil)?[0] as? T
     }
 }
